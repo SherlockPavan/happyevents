@@ -2,34 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Login</title>
+    <title>Admin Login | Happy Events</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Admin Login</h1>
-        <nav>
-            <a href="/">Home</a>
-        </nav>
-    </header>
 
-    <section>
-        <form method="POST">
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.username.label }}<br>
-                {{ form.username(size=30) }}
-            </p>
-            <p>
-                {{ form.password.label }}<br>
-                {{ form.password(size=30) }}
-            </p>
-            <p>{{ form.submit() }}</p>
-        </form>
-    </section>
+<header>
+    <h1>Happy Events</h1>
+    <p>Admin Panel Login</p>
+</header>
 
-    <footer>
-        <p>© Happy Events</p>
-    </footer>
+<section style="max-width:400px; margin:40px auto;">
+    
+    <h2>Admin Login</h2>
+    <p style="color: gray;">
+        This page is restricted. Only administrators can log in.
+    </p>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color:red;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <label>Admin ID</label><br>
+        {{ form.username(size=30, placeholder="Enter admin username") }}
+        <br><br>
+
+        <label>Password</label><br>
+        {{ form.password(size=30, placeholder="Enter admin password") }}
+        <br><br>
+
+        {{ form.submit(value="Login") }}
+    </form>
+
+    <br>
+    <p style="font-size: 13px; color: gray;">
+        Default Admin ID: <b>admin</b><br>
+        Contact developer if you forgot credentials.
+    </p>
+
+</section>
+
+<footer>
+    <p>© 2025 Happy Events | Admin Access</p>
+</footer>
+
 </body>
 </html>
